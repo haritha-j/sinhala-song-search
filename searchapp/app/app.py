@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from searchapp.data import all_products
+from searchapp.data import all_songs
 from searchapp.app.search import search
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ def index():
     Search for products across a variety of terms, and show 9 results for each.
     """
     search_terms = [
-        'necklace',
+        'amma',
         'metal necklace',
         'necklce',
         'OK',
@@ -54,7 +54,7 @@ def single_product(product_id):
     Display information about a specific product
     """
 
-    product = str(all_products()[product_id - 1])
+    product = str(all_songs()[product_id - 1])
 
     return render_template(
         'product.html',

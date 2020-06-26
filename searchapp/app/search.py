@@ -9,16 +9,17 @@ HEADERS = {'content-type': 'application/json'}
 
 class SearchResult():
     """Represents a product returned from elasticsearch."""
-    def __init__(self, id_, image, name):
+    def __init__(self, id_, track_name_si, track_name_en):
         self.id = id_
-        self.image = image
-        self.name = name
+        self.track_name_si = track_name_si
+        self.track_name_en = track_name_en
 
     def from_doc(doc) -> 'SearchResult':
+        print(doc)
         return SearchResult(
                 id_ = doc.meta.id,
-                image = doc.image,
-                name = doc.name,
+                track_name_en = doc.track_name_en,
+                track_name_si = doc.track_name_si,
             )
 
 
@@ -31,8 +32,8 @@ def search(term: str, count: int) -> List[SearchResult]:
 
     s = Search(using=client, index=INDEX_NAME, doc_type=DOC_TYPE)
     #name_query = {'match_all': {}}
-    #name_query = {"term": {"name":term}}
-    name_query = {"match": {"name.english_analyzed": { 'query' : term, 'operator' : 'and', 'fuzziness' : "AUTO"}}}
+    #name_query = {"term": {"track_name_si":term}}
+    name_query = {"match": {"track_name_si": { 'query' : term, 'operator' : 'and', 'fuzziness' : "AUTO"}}}
     docs = s.query(name_query)[:count].execute()
 
 

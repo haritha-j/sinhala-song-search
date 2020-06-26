@@ -1,0 +1,6 @@
+Requirement already satisfied: elasticsearch-dsl in /home/haritha/anaconda3/envs/ssongSearch/lib/python3.8/site-packages (7.2.1)
+Requirement already satisfied: six in /home/haritha/anaconda3/envs/ssongSearch/lib/python3.8/site-packages (from elasticsearch-dsl) (1.15.0)
+Requirement already satisfied: elasticsearch<8.0.0,>=7.0.0 in /home/haritha/anaconda3/envs/ssongSearch/lib/python3.8/site-packages (from elasticsearch-dsl) (7.8.0)
+Requirement already satisfied: python-dateutil in /home/haritha/anaconda3/envs/ssongSearch/lib/python3.8/site-packages (from elasticsearch-dsl) (2.8.1)
+Requirement already satisfied: certifi in /home/haritha/anaconda3/envs/ssongSearch/lib/python3.8/site-packages (from elasticsearch<8.0.0,>=7.0.0->elasticsearch-dsl) (2020.4.5.2)
+Requirement already satisfied: urllib3>=1.21.1 in /home/haritha/anaconda3/envs/ssongSearch/lib/python3.8/site-packages (from elasticsearch<8.0.0,>=7.0.0->elasticsearch-dsl) (1.25.9)

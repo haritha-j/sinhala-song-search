@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch.helpers import parallel_bulk
 
 from searchapp.constants import DOC_TYPE, INDEX_NAME
-from searchapp.data import all_products, ProductData
+from searchapp.data import all_songs, songData
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
         index=INDEX_NAME,
         body={
             'mappings': 
-                {DOC_TYPE: {                                   # This mapping applies to products.
+                {DOC_TYPE: {                                   # This mapping applies to songs.
                     'properties': {                             # Just a magic word.
                         'name': {                                 # The field we want to configure.
                             'type': 'text',                         # The kind of data we’re working with.
@@ -41,23 +41,23 @@ def main():
         },
     )
     actions = []
-    products = all_products()
-    for product in products:
+    songs = all_songs()
+    for song in songs:
         doc = {
             '_op_type' : 'index',
             '_index' : INDEX_NAME,
             '_type' : DOC_TYPE,
-            '_id' : product.id,
-            '_source' : {"name": product.name,
-                    "image": product.image,}
+            '_id' : song.id,
+            '_source' : {"name": song.name,
+                    "image": song.image,}
              }
         actions.append(doc)
 
-    index_products(es, actions)
+    index_songs(es, actions)
 
 
-def index_products(es, actions):
-    """Add multiple products to the ProductData index."""
+def index_songs(es, actions):
+    """Add multiple songs to the songData index."""
     
     for success, info in parallel_bulk(es, actions, thread_count=6):
         if not success:
@@ -66,10 +66,10 @@ def index_products(es, actions):
     """es.create(
         index=INDEX_NAME,
         doc_type=DOC_TYPE,
-        id=product.id,
+        id=song.id,
         body={
-            "name": product.name,
-            "image": product.image,
+            "name": song.name,
+            "image": song.image,
         }
     )"""
 

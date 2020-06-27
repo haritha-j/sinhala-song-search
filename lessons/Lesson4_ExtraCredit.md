@@ -4,22 +4,22 @@ Enough of necklaces, let’s buy a jacket.
 
 There are plenty of jackets available in our data set, but only one shows up here.
 
-The problem is that the words `men’s jacket` don’t usually show up in the product name, but they do show up in the product description. Let’s search the descriptions instead of the names.
+The problem is that the words `men’s jacket` don’t usually show up in the song name, but they do show up in the song description. Let’s search the descriptions instead of the names.
 
 Where are the docs?
 
 There’s nothing new here, but you may want to review some of the documentation above.
 
-## Part 1: Indexing Jackets (Indexing Product Description)
+## Part 1: Indexing Jackets (Indexing song Description)
 
 ### What you need to do:
-The indexing and search flow here is very similar to what you've seen before already. Just adapt them for product description!
+The indexing and search flow here is very similar to what you've seen before already. Just adapt them for song description!
 
-In `searchapp/index_products.py`:
+In `searchapp/index_songs.py`:
 
 <details>
 <summary>Hint: Step 1</summary>
-Add the product description to the `_source` of your document.
+Add the song description to the `_source` of your document.
 </details>
 
 <details>
@@ -34,13 +34,13 @@ Change `search.py` to reference `description.english_analyzed` instead of name.
 
 <details>
 <summary>Hint: Step 4</summary>
-As usual, don’t forget to re-run `index_products` after changing it.
+As usual, don’t forget to re-run `index_songs` after changing it.
 </details>
 
 ### How you’ll know it worked:
 There are actually Jackets returned for the `men’s jackets` query.
 
-This is a huge improvement for the jackets, but just about every other query has gotten worse. When there’s a match against the product name, the results are great, but we still need to support searches against the description. Fortunately, we can combine our name query and our description query, and search against both fields.
+This is a huge improvement for the jackets, but just about every other query has gotten worse. When there’s a match against the song name, the results are great, but we still need to support searches against the description. Fortunately, we can combine our name query and our description query, and search against both fields.
 
 ### Where are the docs?
 https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-dis-max-query.html

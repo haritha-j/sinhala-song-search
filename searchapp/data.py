@@ -1,6 +1,8 @@
 import json
 import os
 import textwrap
+from sinlingmaster.sinling import  SinhalaTokenizer
+
 _all_songs = None
 
 class SongData():
@@ -53,6 +55,7 @@ def all_songs():
 
     if _all_songs is None:
         _all_songs = []
+        tokenizer = SinhalaTokenizer()
 
         # Load the songs json from the same directory as this file.
         dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -61,6 +64,18 @@ def all_songs():
             for idx, song in enumerate(json.load(song_file, strict=False)):
                 id_ = idx + 1  # ES indexes must be positive integers, so add 1
                 song_data = SongData(id_, **song)
+                tokenized_lyrics = ""
+                tokens = tokenizer.tokenize(song_data.lyrics)
+                for token in tokens:
+                    tokenized_lyrics += token + " "
+                #print(tokenized_lyrics)
+                song_data.lyrics = tokenized_lyrics
                 _all_songs.append(song_data)
 
+
+        tokenizer = SinhalaTokenizer()
+        #print("first file")
+        #print(_all_songs[0].lyrics)
+        #print(tokenizer.tokenize(_all_songs[0].lyrics))
+        
     return _all_songs

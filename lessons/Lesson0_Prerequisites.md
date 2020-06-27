@@ -1,6 +1,6 @@
 # Tutorial Pre-Work
 
-In this tutorial, you will be building a search engine to search for product attributes using a Flask app and Elasticsearch.
+In this tutorial, you will be building a search engine to search for song attributes using a Flask app and Elasticsearch.
 
 To participate in this tutorial, you need to complete the following prerequisites:
 

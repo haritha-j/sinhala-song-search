@@ -15,7 +15,7 @@ The more you try on your own, the more you’ll learn :)
 
 
 ## Part 1: Necklaces! (Term Query)
-Let’s start by using a term query to search for products by their name.
+Let’s start by using a term query to search for songs by their name.
 
 ### Where are the docs?
 https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-query.html
@@ -24,7 +24,7 @@ https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-term-q
 Replace the match_all query with a term query. In the docs you’ll see "query" provided in the dictionary, but you don’t need to include that. Elasticsearch-dsl will automatically wrap the name_query for you.
 
 ### How you’ll know it worked:
-Instead of seeing the same products for every query, you’ll see necklaces under the necklace query!
+Instead of seeing the same songs for every query, you’ll see necklaces under the necklace query!
 
 All of the other queries will return nothing.
 
@@ -71,7 +71,7 @@ What happens when you run a [match query](https://www.elastic.co/guide/en/elasti
 Our next goal is to make the query for `Metal Necklace` work.
 
 ### What you need to do:
-There are lots of products with metal and necklace in their name - return metal necklaces.
+There are lots of songs with metal and necklace in their name - return metal necklaces.
 
 <details>
 <summary>Hint</summary>

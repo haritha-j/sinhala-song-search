@@ -12,15 +12,38 @@ def main():
     es.indices.create(
         index=INDEX_NAME,
         body={
-            'mappings': {},
-            'settings': {},
+            'mappings': {
+                DOC_TYPE: {
+                    'properties': {
+                        'lyrics': {
+                            'type': 'text',
+                            'fields': {
+                                'lyrics_analyzed': {
+                                    'type': 'text',
+                                    'analyzer': 'custom_lyric_analyzer',
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            'settings': {
+                'analysis': {
+                    'analyzer': {
+                        'custom_lyric_analyzer': {
+                            'tokenizer': "whitespace",
+                            'stopwords': ['top'],
+                        },
+                    },
+                },
+            },
         },
     )
 
     bulk_index_songs(es, all_songs())
     #index_song(es, all_songs()[0])
-    #for product in all_songs():
-     #   index_songs(es, product)
+    #for song in all_songs():
+     #   index_songs(es, song)
 
 
 

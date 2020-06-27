@@ -8,9 +8,9 @@ The word `a` in `a brass necklace` is a *stop word*.
 
 A *stop word* is a word that doesn’t add any extra information and can be ignored.
 
-Elasticsearch comes with built in support for removing stop words. We just have to tell it that the `name` field of our products contains english text.
+Elasticsearch comes with built in support for removing stop words. We just have to tell it that the `name` field of our songs contains english text.
 
-Once we do that, elasticsearch will filter out stop words in both the names of our products, and the search queries we run against them. I’ve left lots of spoilers visible below, because the documentation can easily lead you astray.
+Once we do that, elasticsearch will filter out stop words in both the names of our songs, and the search queries we run against them. I’ve left lots of spoilers visible below, because the documentation can easily lead you astray.
 
 #### Disclaimer:
 Unlike the previous problems, we are going to walk you through how to add stop words to your search app.
@@ -18,12 +18,12 @@ Unlike the previous problems, we are going to walk you through how to add stop w
 If you really want to work through this on your own, don’t read any further!
 
 ### What you need to do:
-Head back to `index_products.py`. When you create the index, add a mapping that tells elasticsearch to analyze the `name` field as english.
+Head back to `index_songs.py`. When you create the index, add a mapping that tells elasticsearch to analyze the `name` field as english.
 
 Let's look at the mapping that we are going to index.
 ```
 'mappings': {
-    DOC_TYPE: {                                   # This mapping applies to products.
+    DOC_TYPE: {                                   # This mapping applies to songs.
         'properties': {                             # Just a magic word.
             'name': {                                 # The field we want to configure.
                 'type': 'text',                         # The kind of data we’re working with.
@@ -69,11 +69,11 @@ Create the custom analyzer in the settings when you create the index. Like befor
 }
 ```
 
-Re-run `index_products`, and it will create the analyzer. You can query it directly using the curl request below.
+Re-run `index_songs`, and it will create the analyzer. You can query it directly using the curl request below.
 
 ### How you’ll know it worked:
 ```
-curl -X POST localhost:9200/products_index/_analyze -d '{"analyzer": "custom_english_analyzer", "text": "necklace made of brass"}' -H 'Content-Type: application/json'
+curl -X POST localhost:9200/songs_index/_analyze -d '{"analyzer": "custom_english_analyzer", "text": "necklace made of brass"}' -H 'Content-Type: application/json'
 ```
 
 Yields:
@@ -114,7 +114,7 @@ You can try the same query with the `english` analyzer directly, and you’ll se
 <summary>Hint</summary>
 Swap out the english analyzer in the mapping, for the `custom_english_analyzer`.
 
-As usual, don’t forget to re-run `index_products` after changing it.
+As usual, don’t forget to re-run `index_songs` after changing it.
 </details>
 
 ### How you’ll know it worked:

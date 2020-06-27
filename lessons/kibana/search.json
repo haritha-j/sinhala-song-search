@@ -5,14 +5,14 @@
 # Basic Search: Querying documents with GET
 #--------------------------------------
 
-# We now have about 20k products in the index!
+# We now have about 20k songs in the index!
 # Let's search for them.
 # Find *all* documents
 
-GET /products_index/product/_search
+GET /songs_index/song/_search
 
 # This is the same query.
-GET /products_index/product/_search
+GET /songs_index/song/_search
 {
   "query": {
     "match_all": {}
@@ -20,7 +20,7 @@ GET /products_index/product/_search
 }
 
 # Let's find all necklaces!
-GET /products_index/product/_search
+GET /songs_index/song/_search
 {
   "query": {
     "match": {

@@ -8,7 +8,7 @@
 - [Jim Grandpre](https://twitter.com/jimtla)
 
 # [Tutorial Prerequisites](/lessons/Lesson0_Prerequisites.md)
-In this tutorial, you will be building a search engine to search for product attributes using a Flask app and Elasticsearch.
+In this tutorial, you will be building a search engine to search for song attributes using a Flask app and Elasticsearch.
 
 To participate in this tutorial, you need the following:
 
@@ -23,5 +23,5 @@ git commit -am "session1 work"
 git fetch
 git checkout session2
 source venv/bin/activate
-python searchapp/index_products.py
+python searchapp/index_songs.py
 ```

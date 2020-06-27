@@ -2,20 +2,20 @@
 # 1. Basic Indexing: Create a document with POST
 # ------------------------------
 
-# We'll be adding products to a product catalog. Let's add our first JSON doc:
+# We'll be adding songs to a song catalog. Let's add our first JSON doc:
 
-POST /products_index_test/product
+POST /songs_index_test/song
 {
   "name": "Orange Shirt",
   "description": "This is an orange shirt."
 }
 
-# Indexing the document automatically created the index for us, named "product_index_test" with mapping type "product"
+# Indexing the document automatically created the index for us, named "song_index_test" with mapping type "song"
 
-# The product is now in the index!
+# The song is now in the index!
 
 # Let's find it in the index using a GET command:
-GET /products_index_test/_search
+GET /songs_index_test/_search
 
 # ------------------------------
 # 2. Basic Indexing: Create a document with PUT
@@ -24,7 +24,7 @@ GET /products_index_test/_search
 # PUT requires an id for the document, as part of the URL
 
 # If we run the following we'll get an error
-PUT /products_index_test/product
+PUT /songs_index_test/song
 {
   "name": "Blue Shirt",
   "description": "This is a blue shirt."
@@ -32,33 +32,33 @@ PUT /products_index_test/product
 
 # The error is expected!
 # Run this instead:
-PUT /products_index_test/product/1
+PUT /songs_index_test/song/1
 {
   "name": "Blue Shirt",
   "description": "This is an blue shirt."
 }
 
-# Run this to get all of the products in our index
-GET /products_index_test/_search
+# Run this to get all of the songs in our index
+GET /songs_index_test/_search
 
 # We now have an Orange Shirt and a Blue Shirt in our index.
 
 # Instead of dynamically creating the index based on the first document we add, we can create the index beforehand, to set certain settings. We will do that later on in the tutorial today.
 
 # ------------------------------
-# 3. Basic Indexing: Bulk adding products
+# 3. Basic Indexing: Bulk adding songs
 # ------------------------------
 
 # When you need to index a lot of docs, you should use the bulk API, you may see signficant performance benefits
 
-POST /products_index_test/product/_bulk
+POST /songs_index_test/song/_bulk
 { "index": { "_id": 2 }}
 {"name": "Green Shirt", "description": "This is a green shirt."}
 { "index": { "_id": 3 }}
 {"name": "Purple Shirt", "description": "This is a purple shirt."}
 
 
-GET /products_index_test/_search
+GET /songs_index_test/_search
 
 # Let's delete this index, since we won't be using it again.
-DELETE /products_index_test
+DELETE /songs_index_test

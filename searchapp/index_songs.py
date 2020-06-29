@@ -5,7 +5,6 @@ from searchapp.data import all_songs, SongData
 
 
 def main():
-    # Connect to localhost:9200 by default.
     es = Elasticsearch()
 
     es.indices.delete(index=INDEX_NAME, ignore=404)
@@ -24,7 +23,13 @@ def main():
                                 },
                             },
                         },
+                        "track_name_si":{
+                        "type":"text",
+                        "boost":2
+                        
+                        }
                     },
+
                 },
             },
             'settings': {
@@ -32,7 +37,7 @@ def main():
                     'analyzer': {
                         'custom_lyric_analyzer': {
                             'tokenizer': "whitespace",
-                            'stopwords': ['top'],
+                            'stopwords': ['top', 'by, ''music', 'ආ', 'ලා', '1','2','3','4','5','6','7','8','9'],
                         },
                     },
                 },
@@ -62,7 +67,9 @@ def index_song(es, song: SongData):
             "artist_name_en": song.artist_name_en,
             "artist_name_si": song.artist_name_si,
             "artist_rating": song.artist_rating,
-            "lyrics": song.lyrics
+            "lyrics": song.lyrics,
+            "movie": movie,
+            "genres": genres
         }
     )
 
@@ -84,7 +91,9 @@ def bulk_index_songs(es, songs):
             "artist_name_en": song.artist_name_en,
             "artist_name_si": song.artist_name_si,
             "artist_rating": song.artist_rating,
-            "lyrics": song.lyrics
+            "lyrics": song.lyrics,
+            "movie": song.movie,
+            "genres": song.genres
         }
     }
     for song in songs

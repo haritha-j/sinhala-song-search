@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     #search-bar {
-      display: flex;
+      display: flex	;
       margin: 20px 10px;
     }
 
@@ -43,7 +43,7 @@
     .search-results {
       display: grid;
       grid-template-columns: repeat(4, 400px);
-      grid-auto-rows: 200px;
+      grid-auto-rows: 250px;
       grid-gap: 20px;
     }
 
@@ -55,7 +55,7 @@
     }
 
     .song-info {
-      height: 200px;
+      height: 250px;
       overflow: hidden;
     }
 
@@ -71,17 +71,20 @@
 
   <form id="search-bar" action="/search">
     <input type="text" placeholder="Search.." name="search" value="{{ search_term }}">
+    <br>
     <input type="text" placeholder="Artist Name" name="artist_name" value="{{ artist_name }}">
-    <input type="text" placeholder="Min rating" name="min_rating" value="{{ min_rating }}">
+    <br>
+    <input type="text" placeholder="Album Name" name="album_name" value="{{ album_name }}">
+    <br>
+    <input type="text" placeholder="Minimum rating" name="min_rating" value="{{ min_rating }}">
+
     <button type="submit"><i class="fa fa-search">Search</i></button>
   </form>
 
   <div class="bulk-results">
     {% for category, songs in songs_by_category %}
       <div class="search">
-        <div class="search-header">
-          <a href="search?search={{category}}" class="search-term">"{{ category }}"</a>
-        </div>
+
         <div class="search-results">
           {% for song in songs %}
             <a href="song/{{ song.id }}" class="song">
@@ -94,6 +97,10 @@
                 <span> Album: {{ song.album_name_si }}</span>
                 <br><br>
                 <span> Rating: {{ song.track_rating }}</span>
+                <br><br>
+                <span> Genres: {{ song.genres }}</span>
+                <br><br>
+                <span> Movie: {{ song.movie }}</span>
               </div>
             </a>
           {% endfor %}

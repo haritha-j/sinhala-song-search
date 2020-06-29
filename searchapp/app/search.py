@@ -1,6 +1,7 @@
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
 from typing import List
+from sinlingmaster.sinling import  SinhalaTokenizer
 
 from searchapp.constants import DOC_TYPE, INDEX_NAME
 
@@ -37,8 +38,18 @@ def search(term: str, count: int, artist_name=None, min_rating=0) -> List[Search
     client.transport.connection_pool.connection.headers.update(HEADERS)
 
     s = Search(using=client, index=INDEX_NAME, doc_type=DOC_TYPE)
+
+    #tokenize the query (only used for lyrics search)
+    tokenizer = SinhalaTokenizer()
+    tokenized_query_for_lyrics = ""
+    tokens = tokenizer.tokenize(term)
+    for token in tokens:
+        tokenized_query_for_lyrics += token + " "
+    
+    #fitlers to add faceted search
     filters = []
 
+    #filter songs by minumum rating
     if min_rating != '' and float(min_rating) > 0:
         rating_facet = {
             "range": {
@@ -50,6 +61,7 @@ def search(term: str, count: int, artist_name=None, min_rating=0) -> List[Search
 
         filters.append(rating_facet)
 
+    #filter songs by artist name
     if artist_name is not None and artist_name != '':
         artist_facet = {
             "match": {
@@ -68,7 +80,7 @@ def search(term: str, count: int, artist_name=None, min_rating=0) -> List[Search
                 "dis_max": {
                     "queries": [
                         {"match": { "track_name_si":{"query": term, "fuzziness": "AUTO"}}},
-                        {"match": { "lyrics_analyzed":{"query": term, "fuzziness": "AUTO"}}},
+                        {"match": { "lyrics_analyzed":{"query": tokenized_query_for_lyrics, "fuzziness": "AUTO"}}},
                         {"match": { "album_name_si":{"query": term, "fuzziness": "AUTO"}}},
                         {"match": { "artist_name_si":{"query": term, "fuzziness": "AUTO"}}}
                     ]

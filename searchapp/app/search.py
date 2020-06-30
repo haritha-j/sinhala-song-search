@@ -107,7 +107,6 @@ def search(term: str, count: int, artist_name=None, album_name=None, genre=None,
         filters.append(album_facet)
 
     #query from all available fields
-
     if (term.strip()=="songs"):
         query = {
             "bool": {

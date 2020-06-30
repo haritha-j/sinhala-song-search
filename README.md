@@ -4,13 +4,13 @@ JMHA Jayasinghe - 160238R
 
 ## Overview
 
-This provides a flask app which let's a user search through a dataset of Sinhala songs using elasticSearch.
+This repository provides a flask app which let's a user search through a dataset of Sinhala songs using elasticSearch.
 
 ## Dataset
 
 The dataset is collected from two sources, and merged together using artist name and track name.
-1. Sinhala Song Corpus - songs.json
-2. Data scraped from sinhalasongbook.com -scraped_songs2.json
+1. Sinhala Song Corpus - `songs.json`
+2. Data scraped from sinhalasongbook.com - `scraped_songs2.json`
 
 Code for scraping - `scraper.py`
 Code for merging data - `searchapp/app/merge.py`

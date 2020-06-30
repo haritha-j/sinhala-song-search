@@ -53,7 +53,7 @@ def search(term: str, count: int, artist_name=None, album_name=None, genre=None,
     
     #fitlers to add faceted search
     filters = []
-
+    """
     #filter songs by genre
     if genre is not None and genre != '':
         genre_facet = {
@@ -66,7 +66,7 @@ def search(term: str, count: int, artist_name=None, album_name=None, genre=None,
         }
 
         filters.append(genre_facet)
-
+    """
 
     #filter songs by minumum rating
     if min_rating != '' and float(min_rating) > 0:

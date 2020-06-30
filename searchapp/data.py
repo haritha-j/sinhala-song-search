@@ -65,17 +65,17 @@ def all_songs():
 
         # Load the songs json from the same directory as this file.
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        songs_path = os.path.join(dir_path, 'merged_songs.json')
+        songs_path = os.path.join(dir_path, 'merged_songs2.json')
         with open(songs_path) as song_file:
             for idx, song in enumerate(json.load(song_file, strict=False)):
                 id_ = idx + 1  # ES indexes must be positive integers, so add 1
                 song_data = SongData(id_, **song)
+
+                #tokenize lyrics
                 tokenized_lyrics = ""
                 tokens = tokenizer.tokenize(song_data.lyrics)
                 for token in tokens:
                     tokenized_lyrics += token + " "
-                
-                #tokenize lyrics
                 song_data.lyrics = tokenized_lyrics
                 if (float(song_data.track_rating) >9):
                     song_data.track_rating = 9.0

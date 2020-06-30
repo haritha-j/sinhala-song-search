@@ -37,7 +37,7 @@ def main():
                     'analyzer': {
                         'custom_lyric_analyzer': {
                             'tokenizer': "whitespace",
-                            'stopwords': ['top', 'by, ''music', 'ආ', 'ලා', '1','2','3','4','5','6','7','8','9'],
+                            'stopwords': ['top', 'by, ''music', 'ආ', 'ලා'],
                         },
                     },
                 },

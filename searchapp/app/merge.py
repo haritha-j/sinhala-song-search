@@ -3,8 +3,8 @@ import json
 
 
 
-with open("merged_songs.json", 'w', encoding='utf8') as outfile:
-    with open("scraped_songs.json", 'r') as f2:
+with open("merged_songs2.json", 'w', encoding='utf8') as outfile:
+    with open("scraped_songs2.json", 'r') as f2:
         with open("songs.json", 'r') as f1:
             scraped_songs = json.load(f2)
             

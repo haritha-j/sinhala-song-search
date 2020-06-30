@@ -15,6 +15,8 @@ The dataset is collected from two sources, and merged together using artist name
 Code for scraping - `scraper.py`
 Code for merging data - `searchapp/app/merge.py`
 
+The final merged data is located at `searchapp/merged_songs2.json`
+
 Available fields -
 
 ```track_name_en, track_name_si, track_rating, album_name_en, album_name_si, artist_name_en, artist_name_si, artist_rating, genres, movie, lyrics```
